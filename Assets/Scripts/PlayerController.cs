@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
+
 
 public class PlayerController : MonoBehaviour
 {
@@ -10,6 +12,11 @@ public class PlayerController : MonoBehaviour
     public static bool isDead=false;
 
     public float hizlanmaZorlugu;
+    float score = 0f;
+    float artisMiktari = 1f;
+
+    [SerializeField]
+    Text scoreText;
 
     [SerializeField]
     float speed;
@@ -44,6 +51,9 @@ public class PlayerController : MonoBehaviour
         Vector3 hareket = yon * speed * Time.deltaTime;
         speed += Time.deltaTime*hizlanmaZorlugu;
         transform.position += hareket;
+        score += artisMiktari * speed * Time.deltaTime;
+        
+        scoreText.text ="Score : " + ((int)score).ToString();
     }
 
     private void OnCollisionExit(Collision collision)
