@@ -5,6 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Vector3 yon = Vector3.left;
+    public GroundSpawner groundSpawner;
 
     [SerializeField]
     float speed;
@@ -29,7 +30,13 @@ public class PlayerController : MonoBehaviour
         transform.position += hareket;
     }
 
-
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Zemin"))
+        {
+            groundSpawner.ZeminOlustur();
+        }
+    }
 
 
 
